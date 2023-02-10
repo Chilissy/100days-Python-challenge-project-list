@@ -1,3 +1,4 @@
+import clear
 
 def add(n1, n2):
     return n1 + n2 
@@ -19,49 +20,35 @@ operations = {
     "/": divide
 }
 
-nl = []
 
-n1 = int(input("What number one: "))
-n2 = int(input("What number two: "))
-
-nl.append(n1)
-nl.append(n2)
-
-for key in operations:
-    print(key)
+def calculator():
+    print("Welcome to calculator!")
+    n1 = float(input("What number one: "))
+    n2 = float(input("What number two: "))
     
-op_sym = input("what operation")
-        
-calculation_function = operations[op_sym]
-first_answer = calculation_function(n1, n2)
-print(first_answer)
-
-x = input("Continue?")
-### if yes
-
-
-for key in operations:
-    print(key)
-    
-op_sym = input("what operation")
-    
-n3 = int(input("What number three: "))
-nl.append(n3)
-
-calculation_function = operations[op_sym]
-second_answer = calculation_function(first_answer, n3)
-
-print(second_answer)
-
-i = second_answer
-
-while input("Continue? ") == "y":
     for key in operations:
         print(key)
         
-    op_sym = input("what operation")
-    j = int(input("What number one: "))
+    op_sym = input("What operation")
+            
     calculation_function = operations[op_sym]
-    i = calculation_function(i, j)
-    print(i)
+    first_answer = calculation_function(n1, n2)
+    print(first_answer)
+    i = float(first_answer)
 
+    x = "y"
+    
+    while x == "y":
+        for key in operations:
+            print(key)
+            
+        op_sym = input("What operation")
+        j = float(input("What number one: "))
+        calculation_function = operations[op_sym]
+        i = calculation_function(i, j)
+        print(i)
+        x = input("Continue? ")
+    else:
+        calculator()
+
+calculator()
