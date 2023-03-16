@@ -13,27 +13,39 @@ list_of_dealer_cards = []
 list_your_hand = []
 list_dealer_hand = []
 
-#VARIABLES
+
+# VARIABLES
 def uadd_card():
     list_your_hand.append(random.randint(2, len(cards) - 1))
+
+
 def dadd_card():
     list_dealer_hand.append(random.randint(2, len(cards) - 1))
+
+
 def check_ace():
-    for ace in range (0, len(list_your_hand)):
+    for ace in range(0, len(list_your_hand)):
         if list_your_hand[ace] == 11:
             list_your_hand[ace] = 1
+
+
 def check_dace():
-    for ace in range (0, len(list_dealer_hand) - 1):
+    for ace in range(0, len(list_dealer_hand) - 1):
         if list_dealer_hand[ace] == 11:
             list_dealer_hand[ace] = 1
+        else:
+            return False
+
 
 def my_sum(sum):
-    for card in range (0, len(list_your_hand)):
+    for card in range(0, len(list_your_hand)):
         x = list_your_hand[card]
         sum = sum + x
     return sum
+
+
 def d_sum(dsum):
-    for card in range (0, len(list_dealer_hand)):
+    for card in range(0, len(list_dealer_hand)):
         x = list_dealer_hand[card]
         dsum = dsum + x
     return dsum
@@ -48,6 +60,12 @@ if my_sum(sum) > 21:
     check_ace()
 if d_sum(dsum) > 21:
     check_dace()
+if my_sum(sum) == 21 and d_sum(dsum) == 21:
+    print("Draw!")
+if my_sum(sum) == 21:
+    print("You won!")
+if d_sum(dsum) == 21:
+    print("You lost!")
 
 print(f"Yours = {list_your_hand} sum: {my_sum(sum)}")
 print(f"Dealers = [x, {list_dealer_hand[1]}]")
@@ -56,12 +74,21 @@ while input("Hit or stand?") == 'h':
     uadd_card()
     if my_sum(sum) > 21:
         check_ace()
+        if my_sum(sum) > 21:
+            print(f"Yours = {list_your_hand} sum: {my_sum(sum)}")
+            print(f"Dealers = {list_dealer_hand} sum: {d_sum(dsum)}")
+            print("You lost!")
+            quit()
     print(f"Yours = {list_your_hand} sum: {my_sum(sum)}")
 else:
     print(f"Dealers = {list_dealer_hand} sum: {d_sum(dsum)}")
     while d_sum(dsum) <= 16:
         dadd_card()
-        check_dace()
+        if d_sum(dsum) > 21:
+            print(f"Yours = {list_your_hand} sum: {my_sum(sum)}")
+            print(f"Dealers = {list_dealer_hand} sum: {d_sum(dsum)}")
+            print("You won!")
+            quit()
         print(f"Yours = {list_your_hand} sum: {my_sum(sum)}")
         print(f"Dealers = {list_dealer_hand} sum: {d_sum(dsum)}")
     if my_sum(sum) > d_sum(dsum):
@@ -73,8 +100,10 @@ else:
     else:
         print("you lost")
         quit()
-        
-        ---------------------------------------------------------------------- previous versions below
+
+        # ---------------------------------------------------------------------- previous
+        # versions
+        # below
 
 # if input1 == 'h':
 #     uadd_card()
@@ -198,4 +227,3 @@ else:
 #     else:
 #         print("you lost")
 #         quit()
-
