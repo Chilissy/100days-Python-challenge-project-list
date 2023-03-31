@@ -28,6 +28,3 @@ for key in dict:
         m = x
 
 print(f"The winner is: " + dict['150'] + "!!!" + f" with the amount of: ${m}")
-
-
-
