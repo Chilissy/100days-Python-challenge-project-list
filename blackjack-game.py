@@ -1,3 +1,7 @@
+# ----- THE CODE BELOW WAS ENTIRELY WRITTEN BY ME. 
+# ----- AS A PART OF A CHALLENGE, I HAD AN OPTION TO CHECK THE HINTS THAT COURSE MASTER PROVIDED WHICH I DID NOT USED.
+# ----- IT TOOK ME AROUND 8 FULL HOURS TO COMPLETE THIS CHALLENGE
+
 import random
 
 cards = {11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10}
@@ -14,21 +18,21 @@ list_your_hand = []
 list_dealer_hand = []
 
 
-# VARIABLES
+""" BELOW: Function, that append my hand by one random card."""
 def uadd_card():
     list_your_hand.append(random.randint(2, len(cards) - 1))
 
-
+""" BELOW: Function, that append dealers hand by one random card."""
 def dadd_card():
     list_dealer_hand.append(random.randint(2, len(cards) - 1))
 
-
+""" BELOW: Function, that check if there's an ace in my hand. If it is, it changes ace value from 11 to 1."""
 def check_ace():
     for ace in range(0, len(list_your_hand)):
         if list_your_hand[ace] == 11:
             list_your_hand[ace] = 1
 
-
+""" BELOW: Function, that check if there's an ace in dealers hand. If it is, it changes ace value from 11 to 1."""
 def check_dace():
     for ace in range(0, len(list_dealer_hand) - 1):
         if list_dealer_hand[ace] == 11:
@@ -36,26 +40,27 @@ def check_dace():
         else:
             return False
 
-
+""" BELOW: Function that sum card on my hand."""
 def my_sum(sum):
     for card in range(0, len(list_your_hand)):
         x = list_your_hand[card]
         sum = sum + x
     return sum
 
-
+""" BELOW: Function that sum card on dealers hand."""
 def d_sum(dsum):
     for card in range(0, len(list_dealer_hand)):
         x = list_dealer_hand[card]
         dsum = dsum + x
     return dsum
 
-
+""" BELOW: Everyone gets 2 cards at the beginning."""
 uadd_card()
 uadd_card()
 dadd_card()
 dadd_card()
 
+""" BELOW: Checks if 2 aces in hand and if I or dealer got Blackjack."""
 if my_sum(sum) > 21:
     check_ace()
 if d_sum(dsum) > 21:
@@ -70,6 +75,8 @@ if d_sum(dsum) == 21:
 print(f"Yours = {list_your_hand} sum: {my_sum(sum)}")
 print(f"Dealers = [x, {list_dealer_hand[1]}]")
 
+""" BELOW: If nobody got Blackjack before, system asks user if to add a new card or pass. If 'HIT' then it checks if the sum is higher than 21, and if there's any
+        ace, that could change the sum value. If the user sum is above 21, it prints 'lost'. If 'STAND', then system does the same for dealer. Then compares."""
 while input("Hit or stand?") == 'h':
     uadd_card()
     if my_sum(sum) > 21:
